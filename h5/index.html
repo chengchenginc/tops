@@ -1,0 +1,296 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>每日热度排行</title>
+    <meta name="keywords" content="每日热度排行">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link href="./css/app.css" rel="stylesheet">
+    <style type="text/css">
+        .rankbox .title {
+            margin-bottom: .6rem;
+        }
+
+        .rankbox .tip {
+            font-size: 1.4rem;
+        }
+
+        .rankbox .tab-pane {
+            background-color: #fff;
+            color: initial;
+            background-image: linear-gradient(-225deg, #fff 0%, #fff 100%);
+        }
+
+        .rankbox .tab-pane .list {
+            margin: 0;
+        }
+
+        .rankbox .tab-pane .list-item {
+            padding: 0 1.7rem;
+        }
+
+        .rankbox .tab-pane .list-item-active {
+            background-color: #f3f3f3;
+        }
+
+        .rankbox .more-rankings {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            line-height: 4.5rem;
+        }
+
+        .rankbox .more-rankings span{
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .rankbox .icon-more{
+            display: inline-block;
+            width: 21px;
+            height: 23.4px;
+            margin-left: .7rem;
+            background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzNnB4IiB2aWV3Qm94PSIwIDAgMjQgMzYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ2LjIgKDQ0NDk2KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5DaGV2cm9uPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlN5bWJvbHMiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgIDxnIGlkPSJDaGV2cm9uIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZT0iI0JCQkJCQiI+CiAgICAgICAgICAgIDxwb2x5bGluZSBpZD0iUmVjdGFuZ2xlLTIiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDYuNTU2MzQ5LCAxNy41NTYzNDkpIHJvdGF0ZSgtMzE1LjAwMDAwMCkgdHJhbnNsYXRlKC02LjU1NjM0OSwgLTE3LjU1NjM0OSkgIiBwb2ludHM9Ii00LjQ0MzY1MDgxIDYuNTU2MzQ5MTkgMTcuNTU2MzQ5MiA2LjU1NjM0OTE5IDE3LjU1NjM0OTIgMjguNTU2MzQ5MiI+PC9wb2x5bGluZT4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==) center / cover no-repeat;
+            background-size: 8.2px 12.4px;
+        }
+
+        .car {
+            background-image: linear-gradient(-225deg, #9077FF 0%, #6F4BFF 100%);
+        }
+
+        .phone {
+            background-image: linear-gradient(-225deg, #08BBFF 0%, #16A6FD 100%);
+        }
+
+        .makeup {
+            background-image: linear-gradient(-225deg, #F399BE 0%, #DA70A1 100%);
+        }
+
+        .star {
+            background: linear-gradient(-225deg, #F39999 0%, #DA7070 100%);
+        }
+
+        .tourist{
+            background: linear-gradient(-225deg, #6FE9AC 0%, #5AC0C1 100%);
+        }
+
+        .university {
+            background: linear-gradient(-225deg, #99C6F3 0%, #7090DA 100%);
+        }
+
+        .estate {
+            background: linear-gradient(-225deg, #10C1C8 0%, #0097BC 100%);
+        }
+
+        .milkPowder {
+            background: linear-gradient(-225deg, #FEBF42 0%, #EE9825 100%);
+        }
+
+        .data-explain{
+            margin: 1rem 1.7rem;
+            font-size: 1.2rem;
+            color: #999;
+            line-height: 1.8rem;
+            text-align: left;
+        }
+
+        .data-explain .tip {
+            margin-bottom: .8rem;
+            line-height: 1.2rem;
+        }
+
+        .data-explain .tip span {
+            display: inline-block;
+        }
+
+        .data-explain .icon-tip {
+            width: 15px;
+            height: 15px;
+            vertical-align: -3px;
+            background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOSAyOSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNkNmQ2ZDY7fS5jbHMtMntmaWxsOiNmZmY7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT7otYTmupAgMjg8L3RpdGxlPjxnIGlkPSLlm77lsYJfMiIgZGF0YS1uYW1lPSLlm77lsYIgMiI+PGcgaWQ9IuWbvuWxgl8xLTIiIGRhdGEtbmFtZT0i5Zu+5bGCIDEiPjxjaXJjbGUgY2xhc3M9ImNscy0xIiBjeD0iMTQuNSIgY3k9IjE0LjUiIHI9IjE0LjUiLz48cGF0aCBjbGFzcz0iY2xzLTIiIGQ9Ik0xOC42OCw2LjQ1QTQuNTMsNC41MywwLDAsMSwyMC4xOCwxMGE0Ljg0LDQuODQsMCwwLDEtMSwzLjA2LDI1LjQ3LDI1LjQ3LDAsMCwxLTIuMTEsMiw0LjE2LDQuMTYsMCwwLDAtMS4wNSwxLjMsMy4zNywzLjM3LDAsMCwwLS40LDEuNjZ2LjQzSDEzVjE4YTUsNSwwLDAsMSwuNS0yLjM4LDEyLjQxLDEyLjQxLDAsMCwxLDIuODMtMy4xMWwuNDMtLjQ4YTIuOTQsMi45NCwwLDAsMCwuNy0xLjgzLDIuODYsMi44NiwwLDAsMC0uNzMtMi4wNiwyLjkxLDIuOTEsMCwwLDAtMi4xMy0uNzUsMi43NywyLjc3LDAsMCwwLTIuNDYsMS4wOEE0LjIsNC4yLDAsMCwwLDExLjQ1LDExSDguODJBNS44Miw1LjgyLDAsMCwxLDEwLjQsNi43MmE1LjgxLDUuODEsMCwwLDEsNC4zNi0xLjYxQTUuNjEsNS42MSwwLDAsMSwxOC42OCw2LjQ1Wm0tMywxMy44NWExLjY2LDEuNjYsMCwwLDEsLjUzLDEuMjgsMS43OCwxLjc4LDAsMCwxLS41NSwxLjMsMS44OCwxLjg4LDAsMCwxLTEuMy41LDEuOCwxLjgsMCwwLDEtMS4zLS41MywxLjc0LDEuNzQsMCwwLDEtLjUzLTEuMjhBMS42NiwxLjY2LDAsMCwxLDEzLDIwLjI5YTEuNzcsMS43NywwLDAsMSwxLjMtLjVBMS43OSwxLjc5LDAsMCwxLDE1LjY0LDIwLjI5WiIvPjwvZz48L2c+PC9zdmc+) center / cover no-repeat;
+            background-size: 15px;
+        }
+    </style>
+    <style type="text/css">
+        .tab-pane {
+            float: initial;
+            width: 100%;
+        }
+    </style>
+    <script src="../static/js/vue.js"></script>
+    <script src="//cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script>
+        axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+        axios.defaults.transformRequest = [function (data) {
+            var ret = ''
+            for (var it in data) {
+                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+            }
+            return ret
+        }];
+    </script>
+</head>
+<body style="">
+<div id="app">
+    <div  class="header-bar">
+        <div  class="left"  @click.stop="showMenuFunc">
+            <img  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAyOCI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOm5vbmU7c3Ryb2tlOiMzMzM7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjRweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPui1hOa6kCAxPC90aXRsZT48ZyBpZD0i5Zu+5bGCXzIiIGRhdGEtbmFtZT0i5Zu+5bGCIDIiPjxnIGlkPSLlm77lsYJfMS0yIiBkYXRhLW5hbWU9IuWbvuWxgiAxIj48bGluZSBjbGFzcz0iY2xzLTEiIHkxPSIyIiB4Mj0iMzIiIHkyPSIyIi8+PGxpbmUgY2xhc3M9ImNscy0xIiB5MT0iMTQiIHgyPSIzMiIgeTI9IjE0Ii8+PGxpbmUgY2xhc3M9ImNscy0xIiB5MT0iMjYiIHgyPSIzMiIgeTI9IjI2Ii8+PC9nPjwvZz48L3N2Zz4=" alt="back" class="nav-icon">
+        </div>
+        <div  class="middle">
+            <div >
+                每日热度排行
+            </div>
+        </div>
+        <div  class="right"></div>
+    </div>
+
+    <div  class="nav-container" v-if="showMenu">
+        <!--<div  class="header"></div>-->
+        <div  class="nav-bar ivu-row">
+            <div  class="ivu-col ivu-col-span-xs-24">
+                <ul >
+                    <li   v-for="(items,index) in hots">
+                        <a :href="'#'+index">
+                            <div>{{items.name}}</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div  class="nav-bar-bg"></div>
+        <div  class="nav-click"></div>
+    </div>
+
+    <div  class="rankings-view content">
+        <div   class="bannerbg app-bannerbg">
+            <div  class="container">
+                <p  class="title">每日热度排行</p>
+                <p  class="tip">最近更新时间<span>{{datetime}}</span></p>
+            </div>
+        </div>
+
+        <div  class="rankbox baidu"  v-for="(items,index) in hots" :id="index">
+            <div  class="desc">
+                <div  class="title">{{items.name}}</div>
+                <div  class="tip"></div>
+            </div>
+            <div   class="tabs tabs-card" >
+                <div  class="tab-content">
+                    <div class="tab-pane tab-pane" >
+                        <ul class="list" >
+                            <li  class="list-item"  v-for="(item,index2) in items.tops" >
+                                <a :href="item.link" target="_blank" @click>
+                                    <div  class="left" style="width: 80%;">
+                                        <span   :class="'rank rank-'+item.rank">{{item.rank}}</span>
+                                        <span  class="name">{{item.name}}</span>
+                                    </div>
+                                    <div  class="right" style="width: 20%;">
+                                        <div  class="trend">
+                                            <span  class="value">{{item.count}}</span>
+                                             <!--<span  class="trend-icon">
+                                                <i  class="icon trend-fair"></i>
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                 </a>
+                            </li>
+                        </ul>
+                       <!-- <p   class="more-rankings">
+                            <span>更多榜单</span>
+                            <span  class="icon-more"></span>
+                        </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  class="data-explain">
+            <div  class="tip">
+                <span  class="icon-tip"></span>
+                <span >指标说明：</span>
+            </div>
+            <div >
+                <p >
+                排序规则：求和各网站的相关搜索词的搜索指数，形成搜索指数排行；
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    Date.prototype.Format = function (formatStr) {
+        var str = formatStr;
+        var Week = ['日', '一', '二', '三', '四', '五', '六'];
+        str = str.replace(/yyyy|YYYY/, this.getFullYear());
+        str = str.replace(/yy|YY/, (this.getYear() % 100) > 9 ? (this.getYear() % 100).toString() : '0' + (this.getYear() % 100));
+
+        var month = this.getMonth() +1
+        str = str.replace(/MM/,month  > 9 ? month.toString() : '0' + month);
+        str = str.replace(/M/g, month );
+
+        str = str.replace(/w|W/g, Week[this.getDay()]);
+
+        str = str.replace(/dd|DD/, this.getDate() > 9 ? this.getDate().toString() : '0' + this.getDate());
+        str = str.replace(/d|D/g, this.getDate());
+
+        str = str.replace(/hh|HH/, this.getHours() > 9 ? this.getHours().toString() : '0' + this.getHours());
+        str = str.replace(/h|H/g, this.getHours());
+        str = str.replace(/mm/, this.getMinutes() > 9 ? this.getMinutes().toString() : '0' + this.getMinutes());
+        str = str.replace(/m/g, this.getMinutes());
+
+        str = str.replace(/ss|SS/, this.getSeconds() > 9 ? this.getSeconds().toString() : '0' + this.getSeconds());
+        str = str.replace(/s|S/g, this.getSeconds());
+        return str;
+    }
+
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                hots:[],
+                showMenu:false,
+                datetime:''
+            }
+        },
+        mounted() {
+            window.addEventListener("click", this.clickOther);
+        },
+        created: function () {
+            this.loadData()
+        },
+        methods: {
+            clickOther:function(e){
+                if(this.showMenu == true){
+                    this.showMenu = false
+                }
+            },
+            showMenuFunc:function(){
+                if(this.showMenu){
+                    this.showMenu = false
+                }else{
+                    this.showMenu = true
+                }
+            },
+            loadData:function() {
+                var $this = this;
+                var date = new Date().Format("YYYYMMDD")
+                axios({
+                    method: 'get',
+                    url: "../data/"+date+"_hots.json",
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                }).then(function (res) {
+                    if(res.status==200){
+                        $this.hots = res.data.tops
+                        $this.datetime = res.data.datetime
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
