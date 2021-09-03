@@ -1,0 +1,2 @@
+python gathers.py
+pause
