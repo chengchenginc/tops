@@ -126,11 +126,11 @@
         methods: {
             loadData:function() {
                 var $this = this;
-                console.log(new Date())
-                var date = new Date().Format("YYYYMMDD")
+                var today = new Date()
+                var date = today.Format("YYYYMMDD")
                 axios({
                     method: 'get',
-                    url: "../data/"+date+"_hots.json",
+                    url: "../data/"+date+"_hots.json?t="+today.getTime(),
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
                     }
