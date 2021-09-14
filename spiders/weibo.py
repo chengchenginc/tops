@@ -25,7 +25,7 @@ class WeiboSpider(SpiderApi):
                 continue
             hotCount = item.select("a > span > em ")[0].get_text()
             rank = rank_strong[0].get_text()
-            name = item.select("a > span ")[0].get_text()
+            name = item.select("a > span ")[0].decode()
             name = re.sub(r'<em>\d+</em>', "", name)
             name = filter_tags(name)
             _hots = {
