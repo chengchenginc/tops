@@ -18,11 +18,12 @@ class DouyinSpider(SpiderApi):
         for item in data:
             rank = item.select('td')[0].get_text()
             rank = rank.strip(".")
+            name = item.select('tr > td.al > a')[0].get_text()
             _hots = {
                 'rank': rank,
-                'name':item.select('tr > td.al > a')[0].get_text(),
+                'name': name,
                 'count': item.select('td')[2].get_text(),
-                'link': "https://tophub.today" + item.select('tr > td.al > a')[0].get('href'),
+                'link': "https://www.douyin.com/search/"+name+"?source=normal_search&enter_from=recommend" ,
             }
             hots.append(_hots)
         # print(json.dumps(hots))
