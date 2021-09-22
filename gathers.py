@@ -39,14 +39,14 @@ def gather_data():
 
     _date = datetime.datetime.fromtimestamp(int(now)).strftime("%Y%m%d")
     ##处理今日实时点评数据
-    file_path = DATA_PATH + _date + "_hots.json"
+    date_file_path = DATA_PATH + _date + "_hots.json"
+    index_file_path = DATA_PATH + "index_hots.json"
     json_data = {"tops": all_hots, "datetime": _datetime}
     content = json.dumps(json_data, ensure_ascii = False)
-    if os.path.exists(file_path):
-        #移动旧问卷
-        pass
-    with open(file_path, mode="w", encoding="utf-8") as f:
-        f.write(content)
+    with open(date_file_path, mode="w", encoding="utf-8") as f1:
+        f1.write(content)
+    with open(index_file_path, mode="w", encoding="utf-8") as f2:
+        f2.write(content)
 
 
 if __name__ == '__main__':
