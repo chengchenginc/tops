@@ -50,4 +50,5 @@ def gather_data():
 
 
 if __name__ == '__main__':
+    # weibo_hots = WeiboSpider.get_hots()
     gather_data()

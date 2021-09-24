@@ -4,14 +4,16 @@
 
 from spiders.base_spider import *
 
-headers = { 'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'}
+headers = { 'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Mobile Safari/537.36',
+'Cookie': 'SINAGLOBAL=2233539411227.5654.1601454376571; SCF=AlBKGORvaJsW8-nEmzFtt7dqwZnQhVAJ4JuR_biCMn8OXymuaOlm_9dsOr9MlYzeKBWYBBiEHQ5rF9RFfcvZ3MA.; UOR=www.baidu.com,vdisk.weibo.com,chengchenginc.github.io; SUB=_2AkMWEaR0f8NxqwJRmPATyGLjaIh0yA_EieKgTVWvJRMxHRl-yT92qnYgtRB6PZGKm3Mkunxhyoqk84H4tRmcQVcSxAEA; SUBP=0033WrSXqPxfM72-Ws9jqgMF55529P9D9WFvMs4cFrcyXicI0MMMviov; _s_tentry=passport.weibo.com; Apache=6350920181265.767.1632447305265; ULV=1632447305349:21:9:2:6350920181265.767.1632447305265:1632295091864; WBStorage=d335429e|undefined'
+            }
 
 
 class WeiboSpider(SpiderApi):
 
     @classmethod
     def get_hots(cls):
-        url = 'https://s.weibo.com/top/summary/summary?cate=realtimehot'
+        url = 'https://s.weibo.com/top/summary?cate=realtimehot'
         response = requests.get(url, headers=headers)
         # print(response.text)
         soup = BeautifulSoup(response.text, "lxml")
@@ -40,7 +42,7 @@ class WeiboSpider(SpiderApi):
 
     @classmethod
     def get_hots_topics(cls):
-        url = 'https://s.weibo.com/top/summary/summary?cate=topicband'
+        url = 'https://s.weibo.com/top/summary?cate=topicband'
         response = requests.get(url, headers=headers)
         # print(response.text)
         soup = BeautifulSoup(response.text, "lxml")
