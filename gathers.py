@@ -7,6 +7,7 @@ from spiders.douyin import *
 from spiders.toutiao import *
 from spiders.weibo import *
 from spiders.zhihu import *
+from spiders.xiaohongshu import *
 
 
 def gather_data():
@@ -28,13 +29,19 @@ def gather_data():
     # zhihu
     zhihu_hots = ZhihuSpider.get_hots()
     print("zhihu over")
+
+    # xiaohongshu
+    xiaohongshu_hots = xiaohongshuSpider.get_hots()
+    print("xiaohongshu over")
+
     all_hots = {
         'baidu': {"tops": baidu_hots, "name": "百度热搜"},
         'douyin': {"tops": douyin_hots, "name": "抖音热搜"},
         'toutiao': {"tops": toutiao_hots, "name": "头条热搜"},
         'weibo_search': {"tops": weibo_hots, "name": "微博热搜"},
         'weibo_topic': {"tops": weibo_hots_topics, "name": "微博话题"},
-        'zhihu': {"tops": zhihu_hots, "name": "知乎热搜"}
+        'zhihu': {"tops": zhihu_hots, "name": "知乎热搜"},
+        "xiaohongshu": {"tops": xiaohongshu_hots, "name": "小红书本周热点"},
     }
 
     _date = datetime.datetime.fromtimestamp(int(now)).strftime("%Y%m%d")
