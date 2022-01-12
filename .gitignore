@@ -24,3 +24,5 @@ composer.phar
 conf/__pycache__/*
 spiders/__pycache__/*
 spiders/xiaohongshu
+
+photo.py
