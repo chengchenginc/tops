@@ -3,10 +3,12 @@
 
 
 from spiders.base_spider import *
+import json
+import base64
 
 headers = {
     'Referer': "https://www.zhihu.com/billboard",
-    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
 }
 url = 'https://www.zhihu.com/billboard'
 
@@ -16,20 +18,21 @@ class ZhihuSpider(SpiderApi):
     def get_hots(cls):
         response = requests.get(url, headers=headers)
         html = response.text
-        content = re.findall(r'<div class="HotList-itemTitle">([\s\S]+?)</div>', html, re.M)
-        hot = re.findall(r'<div class="HotList-itemMetrics">([\s\S]+?)</div>', html, re.M)
-        urls = re.findall(r'"link":{"url":"([\s\S]+?)"}},', html, re.M)
-        describe = re.findall(r'"excerptArea":{"text":"([\s\S]+?)"},', html, re.M)
+        soup = BeautifulSoup(html, "lxml")
+        data = soup.select('#js-initialData')[0].get_text()
+        data = json.loads(data)
+
+        hots_data = data.get("initialState",{}).get("topstory",{}).get("hotList",[])
         hots = []
         rank = 0
-        for i in range(len(content)):
+        for i in range(len(hots_data)):
             rank = rank + 1
             _hots = {
                 'rank': rank,
-                'name': content[i],
-                'count':  hot[i],
-                'link': str(urls[i]).replace('u002F', ''),
-                'desc': describe[i]
+                'name': hots_data[i].get("target",{}).get("titleArea",{}).get("text",""),
+                'count':  hots_data[i].get("target",{}).get("metricsArea",{}).get("text",""),
+                'link': hots_data[i].get("target",{}).get("link",{}).get("url",""),
+                'desc': hots_data[i].get("target",{}).get("excerptArea",{}).get("text",""),
             }
             hots.append(_hots)
         # print(json.dumps(hots))
