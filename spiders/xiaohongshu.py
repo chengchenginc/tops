@@ -29,21 +29,23 @@ class xiaohongshuSpider(SpiderApi):
     def get_hots(cls):
         response = requests.get(url, headers=headers)
         response = response.json()
-        items = response.get("data", [])
+        success_flag = response.get("success",False)
         hots = []
-        rank = 0
-        for item in items:
-            rank += 1
-            link = "https://creator.xiaohongshu.com/topic?topic=%s&page_entrance_type=%s" % (
-            item.get("pageId"), item.get("title"))
-            _hots = {
-                'rank': rank,
-                'name': item.get("title"),
-                'count': item.get("hotValue"),
-                'link': link,
-            }
-            hots.append(_hots)
-        # print(json.dumps(hots,ensure_ascii=False))
+        if success_flag is True:
+            items = response.get("data", [])
+            rank = 0
+            for item in items:
+                rank += 1
+                link = "https://creator.xiaohongshu.com/topic?topic=%s&page_entrance_type=%s" % (
+                item.get("pageId"), item.get("title"))
+                _hots = {
+                    'rank': rank,
+                    'name': item.get("title"),
+                    'count': item.get("hotValue"),
+                    'link': link,
+                }
+                hots.append(_hots)
+            # print(json.dumps(hots,ensure_ascii=False))
         return hots
 
 
